@@ -1,4 +1,4 @@
-# April 23, 2019
+# July 21, 2020
 #
 # Gabriel Hoffman
 #
@@ -44,36 +44,18 @@ cat $OUT | grep -v "^Project" | cut -f2 | sort -u | parallel -P1 "finger {}" | g
 
 
 
+# folders I can't access
+# ll /sc/arion/projects/CommonMind/roussp01a/fetal_hic/hicpro/step1
+# ll /sc/arion/projects/CommonMind/roussp01a/iPSC_goate/step1/files/ips4
+# ll /sc/arion/projects/CommonMind/yixuan
+# ll /sc/arion/projects/CommonMind/INGELHEIM/atacseq/step1/files/942_N/star/94
+# ll /sc/arion/projects/CommonMind/INGELHEIM/rnaseq/step1/work/4a
+# ll /sc/hydra/projects/psychgen/sweden/swedex2/data/genome/out7-16
+# ll /sc/hydra/projects/roussp01a/bzeng/Capstone4_ROSMAP/trans-eQTL_detection/
 
-ll /sc/arion/projects/CommonMind/roussp01a/fetal_hic/hicpro/step1
-ll /sc/arion/projects/CommonMind/roussp01a/iPSC_goate/step1/files/ips4
-ll /sc/arion/projects/CommonMind/yixuan
-ll /sc/arion/projects/CommonMind/INGELHEIM/atacseq/step1/files/942_N/star/94
-ll /sc/arion/projects/CommonMind/INGELHEIM/rnaseq/step1/work/4a
-ll /sc/hydra/projects/psychgen/sweden/swedex2/data/genome/out7-16
-ll /sc/hydra/projects/roussp01a/bzeng/Capstone4_ROSMAP/trans-eQTL_detection/
-
-/sc/hydra/projects/roussp01b/Georgios/CMC/fastq.tables/DLPFC.txt
-
-
+# /sc/hydra/projects/roussp01b/Georgios/CMC/fastq.tables/DLPFC.txt
 
 
-# DOUG
-
-
-You have 250,943 UNZIPPED VCFs
-
-df = fread("dougs_file_usage.txt")
-colnames(df) = c("User", "File", "Size")
-
-df = df[order(df$Size, decreasing=TRUE),]
-df$Size = df$Size/1e9
-head(df)
-
-
-find /sc/hydra/projects/psychgen -name "*vcf" -type f -printf "%u %p %s\n" | grep ruderd02 > dougs_file_usage.txt
-
-/sc/hydra/projects/psychgen/sweden/swedexAutism/VCFs/header.Broad_families.combined.anno.vcf
 
 
 
@@ -131,41 +113,5 @@ dev.off()
 
 
 # access plot at 
-https://hoffmg01.u.hpc.mssm.edu//DiskUsage.pdf
+# https://hoffmg01.u.hpc.mssm.edu//DiskUsage.pdf
 
-
-
-
-
-# # df = foreach( file = files, .combine=rbind) %do% {
-
-# 	title = gsub( "\\.txt", "", file)
-
-# 	df = read.table(file, stringsAsFactors=FALSE, header=TRUE)
-# 	df = data.frame(User = rownames(df), Storage = df[,'Size']/1e12, Project = title, stringsAsFactors=FALSE)
-# # }	
-
-# df = data.table(df)
-# df[,Total:=sum(Storage), by="User"]
-
-# idx = match( df$User, userNames$login )
-# df$Name = userNames$name[idx]
-# df$NameCombine = paste0(df$Name, ' (', df$User, ')')
-
-# fig = ggplot(df, aes(reorder(NameCombine, Total), Storage, fill=Project)) + geom_bar(stat='identity') + theme_bw(16) + coord_flip() + ylab("Storage (Tb)") + ggtitle("Combined Storage") + theme(plot.title = element_text(hjust = 0.5))
-
-# ggsave(file='~/work/disk_usage/DiskUsage.pdf', fig, height=12, width=10)
-
-
-# # get active users
-# cat user_logins.txt | cut -f1 -d' ' | sort -u | parallel -P1 "finger {}" | grep Name | cut -f1,4 | sed 's/Login: //g' | sed 's/Name: //g' > user_logins_full.txt
-
-# df = read.table('~/work/disk_usage/user_logins_full.txt', sep='\t', stringsAsFactors=FALSE)
-# colnames(df) = c("ID", "Name")
-# df$ID = trimws(df$ID )
-# df$Name = trimws(df$Name )
-# df = df[,2:1]
-
-# pdf('~/work/disk_usage/Logins.pdf', height=12, width=10)
-# grid.table(df, row=NULL)
-# dev.off()
