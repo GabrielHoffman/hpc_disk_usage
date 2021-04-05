@@ -8,7 +8,7 @@
 # Get disk usage per user
 # aggregate directly in awk
 
-PROJECTS=('/sc/arion/projects/CommonMind' '/sc/arion/projects/psychencode' '/sc/hydra/projects/psychgen' '/sc/hydra/projects/roussp01a' '/sc/hydra/projects/roussp01b' '/sc/hydra/projects/epigenAD' '/sc/arion/projects/psychAD' '/sc/hydra/projects/va-biobank')
+PROJECTS=('/sc/arion/projects/CommonMind' '/sc/arion/projects/psychencode' '/sc/arion/projects/psychgen' '/sc/arion/projects/roussp01a' '/sc/arion/projects/roussp01b' '/sc/arion/projects/epigenAD' '/sc/arion/projects/psychAD' '/sc/arion/projects/va-biobank')
 
 OUT=~/work/disk_usage_all.tsv
 OUTBAM=~/work/disk_usage_BAM.tsv
