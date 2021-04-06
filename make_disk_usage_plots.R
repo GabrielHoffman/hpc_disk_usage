@@ -103,7 +103,7 @@ df = df[Name %in% df_keep[keep==TRUE,Name],]
 
 pdf("~/work/DiskUsage.pdf", height=16, width=16)
 lapply( names(files), function(ID){
-	ggplot(df[Metric==ID,], aes(reorder(NameCombine, Total), Size/1e12, fill=basename(Project))) + geom_bar(stat='identity') + theme_bw(16) + coord_flip() + ylab("Storage (Tb)") + ggtitle(paste(ID, "Storage:", date())) + theme(plot.title = element_text(hjust = 0.5)) + xlab("User")
+	ggplot(df[Metric==ID,], aes(reorder(NameCombine, Total), Size/1e12, fill=basename(Project))) + geom_bar(stat='identity') + theme_bw(16) + coord_flip() + ylab("Storage (Tb)") + ggtitle(paste(ID, "Storage:", date())) + theme(plot.title = element_text(hjust = 0.5)) + xlab("User") + scale_y_continuous(expand=c(.003, .003))
 })
 lapply( names(files), function(ID){
 	ggplot(df[Metric==ID,], aes(reorder(NameCombine, Total), Size/1e12, fill=basename(Project))) + geom_bar(stat='identity') + theme_bw(16) + coord_flip() + ylab("Storage (Tb)") + ggtitle(paste(ID, "Storage:", date())) + theme(plot.title = element_text(hjust = 0.5), legend.position="none") + xlab("User") + facet_wrap(~basename(Project), nrow=1, scales="free_x") 
