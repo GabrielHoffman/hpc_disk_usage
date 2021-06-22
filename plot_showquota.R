@@ -27,7 +27,7 @@ library(lubridate)
 })
 
 # get date of report
-dates = system("grep 'Last report update' usage.wsgi | awk '{print $4}' | sort -u", intern=TRUE)
+dates = system("showquota -p CommonMind arion  | head -n 1 | cut -f4 -d' '", intern=TRUE)
 date_main = ymd_hm(dates)
 
 
