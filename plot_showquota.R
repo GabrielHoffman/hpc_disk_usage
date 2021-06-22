@@ -69,8 +69,9 @@ main = paste0("Small users (", date_main, ')')
 fig2 = ggplot(df_plot, aes(Name, Size, fill=Project)) + geom_bar(stat="identity") + coord_flip() + scale_y_continuous(expand=c(.01, .01)) + theme_bw() + ylab("Size (Gb)") + xlab("Human name") + ggtitle(main) + ggtitle(main) + theme(plot.title = element_text(hjust = 0.5), aspect.ratio=2)
 
 
+
 # write to file
-file = '/hpc/users/hoffmg01/www/DiskUsage/DiskUsage_showquota.pdf'
+file = paste0("/hpc/users/hoffmg01/www/DiskUsage/DiskUsage_", year(date_main), "-", month(date_main), "-", day(date_main) ,".pdf")
 pdf(file)
 fig1
 fig2
