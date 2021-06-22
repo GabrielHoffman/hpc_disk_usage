@@ -6,7 +6,7 @@
 # Plot disk usage based on showquota
 # Must be run on minerva login node
 
-# source("/hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R")
+# /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R
 
 # command in bash
 cmd = "for proj in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2; do showquota -p $proj arion; done | grep -v Usage | grep -v 'Last report update' | awk '{print $1, $2, $3, $4}' | sed 's/psychgenadmin/psychgenadmin /g' > file_size.tmp"
@@ -16,6 +16,7 @@ system( cmd )
 # R code
 ########
 
+suppressPackageStartupMessages({
 library(ggplot2)
 library(tidyverse)
 library(data.table)
@@ -23,6 +24,7 @@ library(fs)
 library(R.utils)
 library(stringr)
 library(lubridate)
+})
 
 # get date of report
 dates = system("grep 'Last report update' usage.wsgi | awk '{print $4}' | sort -u", intern=TRUE)
