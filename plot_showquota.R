@@ -1,3 +1,5 @@
+#! /usr/bin/env Rscript
+
 # Gabriel Hoffman
 # April 6, 2021
 #
@@ -6,7 +8,9 @@
 
 
 # command in bash
-for proj in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2; do showquota -p $proj arion; done | grep -v Usage | grep -v 'Last report update' | awk '{print $1, $2, $3, $4}' | sed 's/psychgenadmin/psychgenadmin /g' > file_size.tmp
+cmd = "for proj in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2; do showquota -p $proj arion; done | grep -v Usage | grep -v 'Last report update' | awk '{print $1, $2, $3, $4}' | sed 's/psychgenadmin/psychgenadmin /g' > file_size.tmp"
+
+system( cmd )
 
 # R code
 ########
