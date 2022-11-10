@@ -8,6 +8,11 @@
 
 # /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project psychgen
 
+for PROJ in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2;
+do
+ /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project $PROJ
+done
+
 library(getopt)
 spec = matrix(c(
       'project', 'p', 1, "character"
@@ -50,6 +55,9 @@ df$Name = sapply(df$User, function(id){
 	trimws(system(cmd, intern=TRUE))
 })
 
+# remove negative sizes attributable to root
+df = df[grep("^-", df$Size, invert=TRUE),]
+
 # convert sizes to numeric
 df$Project = gsub("arion_projects_", '', df$Project)
 df$Size = sapply(df$Size, fs_bytes) %>% 
@@ -85,6 +93,6 @@ fig1
 fig2
 dev.off()
 
-# https://hoffmg01.u.hpc.mssm.edu/DiskUsage/
+# https://hoffmg01.hpc.mssm.edu/DiskUsage/
 
 
