@@ -96,7 +96,7 @@ file = paste0("/hpc/users/hoffmg01/www/DiskUsage/DiskUsage_", opt$project, "_", 
 pdf(file)
 fig1
 fig2
-dev.off()
+a = dev.off()
 
 # https://hoffmg01.hpc.mssm.edu/DiskUsage/
 
