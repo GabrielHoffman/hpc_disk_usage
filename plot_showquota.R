@@ -10,6 +10,7 @@
 
 # for PROJ in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2;
 # do
+#  echo $PROJ
 #  /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project $PROJ
 # done
 
@@ -57,6 +58,10 @@ df$Name = sapply(df$User, function(id){
 
 # remove negative sizes attributable to root
 df = df[grep("^-", df$Size, invert=TRUE),]
+
+if(nrow(df) == 0){
+	stop("No users storing files")
+}
 
 # convert sizes to numeric
 df$Project = gsub("arion_projects_", '', df$Project)
