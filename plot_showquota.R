@@ -6,10 +6,18 @@
 # Plot disk usage based on showquota
 # Must be run on minerva login node
 
-# /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R
+# /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R psychgen
+
+library(getopt)
+spec = matrix(c(
+      'project', 'v', 1, "character"
+    ), byrow=TRUE, ncol=4)
+opt = getopt(spec)
+
+# projects = "CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2"
 
 # command in bash
-cmd = "for proj in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2; do showquota -p $proj arion; done | grep -v Usage | grep -v 'Last report update' | awk '{print $1, $2, $3, $4}' | sed 's/psychgenadmin/psychgenadmin /g' > file_size.tmp"
+cmd = paste0("for proj in ", opt$project, "; do showquota -p $proj arion; done | grep -v Usage | grep -v 'Last report update' | awk '{print $1, $2, $3, $4}' | sed 's/psychgenadmin/psychgenadmin /g' > file_size.tmp")
 
 system( cmd )
 
@@ -71,7 +79,7 @@ fig2 = ggplot(df_plot, aes(Name, Size, fill=Project)) + geom_bar(stat="identity"
 
 
 # write to file
-file = paste0("/hpc/users/hoffmg01/www/DiskUsage/DiskUsage_", year(date_main), "-", month(date_main), "-", day(date_main) ,".pdf")
+file = paste0("/hpc/users/hoffmg01/www/DiskUsage/DiskUsage_", opt$project, "_", year(date_main), "-", month(date_main), "-", day(date_main) ,".pdf")
 pdf(file)
 fig1
 fig2
