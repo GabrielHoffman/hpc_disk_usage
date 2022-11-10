@@ -74,8 +74,8 @@ df = df[!is.na(Size),]
 df_sort = df[,data.frame(TotalSize=sum(Size)), by="Name"]
 df_sort = df_sort[order(TotalSize, decreasing=FALSE),]
 
-file = paste0("usage_", opt$project, ".tsv")
-write.table(df_sort[order(TotalSize, decreasing=TRUE),], sep="\t", file=file, quote=FALSE, row.names=FALSE)
+file = paste0("usage_", opt$project, ".csv")
+write.table(df_sort[order(TotalSize, decreasing=TRUE),], sep=",", file=file, quote=FALSE, row.names=FALSE)
 
 df$Name = factor(df$Name, df_sort$Name)
 
