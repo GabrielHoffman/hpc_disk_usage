@@ -6,11 +6,11 @@
 # Plot disk usage based on showquota
 # Must be run on minerva login node
 
-# /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R psychgen
+# /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project psychgen
 
 library(getopt)
 spec = matrix(c(
-      'project', 'v', 1, "character"
+      'project', 'p', 1, "character"
     ), byrow=TRUE, ncol=4)
 opt = getopt(spec)
 
