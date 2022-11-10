@@ -8,10 +8,10 @@
 
 # /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project psychgen
 
-for PROJ in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2;
-do
- /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project $PROJ
-done
+# for PROJ in CommonMind epigenAD roussp01a va-biobank psychencode epigenBD roussp01b psychAD psychgen psychgen2;
+# do
+#  /hpc/users/hoffmg01/build2/hpc_disk_usage/plot_showquota.R --project $PROJ
+# done
 
 library(getopt)
 spec = matrix(c(
